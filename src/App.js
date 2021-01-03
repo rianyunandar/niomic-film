@@ -4,14 +4,12 @@ import LoginButton from './component/LoginButton';
 import Profile from './component/Profile';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 
 
 class App extends Component {
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
 
   render() {
     return (
@@ -20,18 +18,21 @@ class App extends Component {
           <Menu.Item
             name='home'
             active={this.props.activeItem === 'home'}
-            onClick={this.goTo.bind(this, 'home')}
-          />
+          >
+            <Link to="/">Home</Link>
+          </Menu.Item>
           <Menu.Item
             name='film'
             active={this.props.activeItem === 'film'}
-            onClick={this.goTo.bind(this, 'film')}
-          />
+          >
+            <Link to="/film">Film</Link>
+          </Menu.Item>
           <Menu.Item
             name='actor'
             active={this.props.activeItem === 'actor'}
-            onClick={this.goTo.bind(this, 'actor')}
-          />
+          >
+            <Link to="/actor">Actor</Link>
+          </Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item>
               <LoginButton />

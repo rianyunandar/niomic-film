@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import App from './App';
 import Home from './component/Home';
 import Film from './component/Film';
@@ -10,13 +10,12 @@ class Routes extends Component {
         return (
             <Router>
                 <div>
-                    <Route path="/" exact component={App} />
-                    <Route path="/home"
-                        render={props => <Home {...props} />} />
-                    <Route path="/film"
-                        render={props => <Film {...props} />} />
-                    <Route patch="/actor"
-                        render={props => <Actor {...props} />} />
+                    <App />
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/film" component={Film} />
+                        <Route path="/actor" component={Actor} />
+                    </Switch>
                 </div>
             </Router>
         );

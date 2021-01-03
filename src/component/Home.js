@@ -12,12 +12,12 @@ class Home extends Component {
     }
 }
 
-const mapDispatchtoProps = (dispatch) => {
+const mapDispatchtoProps = dispatch => {
     return dispatch({
         type: "ACTIVE_ITEM",
         ActiveItem: "home"
     })
 }
-const mapStateToProps = () => { };
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Home);

@@ -12,13 +12,13 @@ class Actor extends Component {
     }
 }
 
-const mapDispatchtoProps = (dispatch) => {
+const mapDispatchtoProps = dispatch => {
     return dispatch({
         type: "ACTIVE_ITEM",
         ActiveItem: "actor"
     })
 }
-const mapStateToProps = () => { };
+const mapStateToProps = state => ({});
 
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Actor);

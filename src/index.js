@@ -7,22 +7,31 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 const stateFilm = {
-  activeItem: "film"
+  activeItem: "home"
 }
 
 //Reducer
 
 const reducerFilm = (state = stateFilm, action) => {
-
+  console.log('action nya =>', action)
   switch (action.type) {
     case "ACTIVE_ITEM":
       var stateactiveItem = { ...state, activeItem: action.ActiveItem }
       return stateactiveItem;
-      break;
     default:
       return state;
-      break;
   }
+
+  // switch (action.type) {
+  //   case 'HOME':
+  //     return Object.assign({}, state, { activeItem: 'home' });
+  //   case 'ACTOR':
+  //     return Object.assign({}, state, { activeItem: 'actor' });
+  //   case 'FILM':
+  //     return Object.assign({}, state, { activeItem: 'film' });
+  //   default:
+  //     return state;
+  // }
 
 }
 

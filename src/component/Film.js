@@ -12,12 +12,12 @@ class Film extends Component {
     }
 }
 
-const mapDispatchtoProps = (dispatch) => {
+const mapDispatchtoProps = dispatch => {
     return dispatch({
         type: "ACTIVE_ITEM",
         ActiveItem: "film"
     })
 }
-const mapStateToProps = () => { };
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Film);

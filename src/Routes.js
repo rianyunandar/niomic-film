@@ -6,6 +6,7 @@ import Film from './component/Film';
 import Actor from './component/Actor';
 
 class Routes extends Component {
+
     render() {
         return (
             <Router>
@@ -13,6 +14,7 @@ class Routes extends Component {
                     <App />
                     <Switch>
                         <Route path="/" exact component={Home} />
+                        <Route path="/home" component={Home} />
                         <Route path="/film" component={Film} />
                         <Route path="/actor" component={Actor} />
                     </Switch>

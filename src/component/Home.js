@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 class Home extends Component {
-    state = {}
     render() {
         return (
             <div>
@@ -12,12 +11,13 @@ class Home extends Component {
     }
 }
 
-const mapDispatchtoProps = dispatch => {
-    return dispatch({
-        type: "ACTIVE_ITEM",
-        ActiveItem: "home"
-    })
-}
-const mapStateToProps = state => ({});
+// const mapDispatchtoProps = dispatch => {
+//     return dispatch({
+//         type: "ACTIVE_ITEM",
+//         ActiveItem: "home"
+//     })
+// }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Home);
+// const mapStateToProps = () => ({});
+
+export default Home;

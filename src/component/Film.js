@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 class Film extends Component {
-    state = {}
     render() {
         return (
             <div>
@@ -12,12 +11,13 @@ class Film extends Component {
     }
 }
 
-const mapDispatchtoProps = dispatch => {
-    return dispatch({
-        type: "ACTIVE_ITEM",
-        ActiveItem: "film"
-    })
-}
-const mapStateToProps = state => ({});
+// const mapDispatchtoProps = dispatch => {
+//     return dispatch({
+//         type: "ACTIVE_ITEM",
+//         ActiveItem: "film"
+//     })
+// }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Film);
+// const mapStateToProps = () => ({});
+
+export default Film;

@@ -7,35 +7,26 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 const stateFilm = {
-  activeItem: "home"
+  activeItems: "film"
 }
 
 //Reducer
 
 const reducerFilm = (state = stateFilm, action) => {
-  console.log('action nya =>', action)
+
+  console.log("actionnya", action)
   switch (action.type) {
     case "ACTIVE_ITEM":
-      var stateactiveItem = { ...state, activeItem: action.ActiveItem }
-      return stateactiveItem;
+      var stateActiveItems = { ...state, activeItems: action.ActiveItem }
+      return stateActiveItems;
     default:
       return state;
   }
 
-  // switch (action.type) {
-  //   case 'HOME':
-  //     return Object.assign({}, state, { activeItem: 'home' });
-  //   case 'ACTOR':
-  //     return Object.assign({}, state, { activeItem: 'actor' });
-  //   case 'FILM':
-  //     return Object.assign({}, state, { activeItem: 'film' });
-  //   default:
-  //     return state;
-  // }
-
 }
 
-const store = createStore(reducerFilm);
+const store = createStore(reducerFilm, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+console.log("store update", store.getState())
 
 ReactDOM.render(
   <Auth0Provider

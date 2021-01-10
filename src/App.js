@@ -7,9 +7,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
-
-
 class App extends Component {
+
 
   render() {
     return (
@@ -17,21 +16,24 @@ class App extends Component {
         <Menu pointing inverted color='blue'>
           <Menu.Item
             name='home'
-            active={this.props.activeItem === 'home'}
+            as={Link} to="/home"
+            active={this.props.activeItems === 'home'}
+            onClick={this.props.onClickedHeader}
           >
-            <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item
             name='film'
-            active={this.props.activeItem === 'film'}
+            as={Link} to="/film"
+            active={this.props.activeItems === 'film'}
+            onClick={this.props.onClickedHeader}
           >
-            <Link to="/film">Film</Link>
           </Menu.Item>
           <Menu.Item
             name='actor'
-            active={this.props.activeItem === 'actor'}
+            as={Link} to="/actor"
+            active={this.props.activeItems === 'actor'}
+            onClick={this.props.onClickedHeader}
           >
-            <Link to="/actor">Actor</Link>
           </Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item>
@@ -48,10 +50,19 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+function mapStatetoProps(state) {
   return {
-    activeItem: state.activeItem
+    activeItems: state.activeItems
   }
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchtoProps(dispatch) {
+  return {
+    onClickedHeader: (e, { name }) => {
+      const action = { type: "ACTIVE_ITEM", ActiveItem: name };
+      dispatch(action);
+    }
+  }
+}
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(App);

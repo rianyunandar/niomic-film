@@ -2,12 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./Routes";
 import 'semantic-ui-css/semantic.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 const stateFilm = {
-  activeItems: "film"
+  activeItems: "beranda"
 }
 
 //Reducer

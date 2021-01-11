@@ -23,7 +23,7 @@ var images = [
     "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg"
 ]
 
-class Home extends Component {
+class Beranda extends Component {
     constructor() {
         super();
         this.state = {
@@ -108,4 +108,4 @@ class Home extends Component {
 
 // const mapStateToProps = () => ({});
 
-export default Home;
+export default Beranda;

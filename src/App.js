@@ -37,13 +37,15 @@ class App extends Component {
           </Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item>
+              <Profile /> &nbsp;&nbsp;
               <LoginButton />
               <LogoutButton />
             </Menu.Item>
           </Menu.Menu>
         </Menu>
 
-        <Profile />
+        {this.props.activeItems === 'beranda'}
+
       </div>
 
     );

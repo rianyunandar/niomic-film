@@ -7,6 +7,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
+
+
 const stateFilm = {
   activeItems: "beranda"
 }
@@ -30,9 +32,11 @@ const store = createStore(reducerFilm, window.__REDUX_DEVTOOLS_EXTENSION__ && wi
 console.log("store update", store.getState())
 
 ReactDOM.render(
+
   <Auth0Provider
-    domain="ras-movie.us.auth0.com"
-    clientId="Qz18waXA7Etjbh6tpKSVeC9obRRWcWPi"
+  
+  domain="rian22.us.auth0.com"
+  clientId="9R1Bd43gvbOVwTjr86AOQtLU2oQcT2Vi"
     redirectUri={window.location.origin}
   >
     <Provider store={store}>

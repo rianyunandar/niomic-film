@@ -4,7 +4,7 @@ import App from './App';
 import Home from './component/Home';
 import Film from './component/Film';
 import Actor from './component/Actor';
-
+import ProtectedRoute from './auth/protected-route';
 class Routes extends Component {
 
     render() {
@@ -15,8 +15,8 @@ class Routes extends Component {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/home" component={Home} />
-                        <Route path="/film" component={Film} />
-                        <Route path="/actor" component={Actor} />
+                        <ProtectedRoute path="/film" component={Film} />
+                        <ProtectedRoute path="/actor" component={Actor} />
                     </Switch>
                 </div>
             </Router>

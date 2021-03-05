@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import { Grid, Card, Image, Icon } from 'semantic-ui-react';
+import { Grid, Card, Image, Icon,Container } from 'semantic-ui-react';
 
 // import { connect } from 'react-redux';
 
@@ -46,7 +46,7 @@ class Beranda extends Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <Carousel autoPlay centerMode centerSlidePercentage={40} showStatus={false}>
                     {images.map((data, key) => {
                         return (
@@ -94,7 +94,7 @@ class Beranda extends Component {
                         )
                     })}
                 </Grid>
-            </div>
+            </Container>
         );
     }
 }

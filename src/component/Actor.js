@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { Grid, Image, Card, Input, Icon } from 'semantic-ui-react';
 
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 
 class Actor extends Component {
@@ -128,14 +128,13 @@ class Actor extends Component {
     }
 }
 
-// const mapDispatchtoProps = dispatch => {
-//     return dispatch({
-//         type: "ACTIVE_ITEM",
-//         ActiveItem: "actor"
-//     })
-// };
-
-// const mapStateToProps = () => ({});
+const mapDispatchtoProps = dispatch => {
+    return dispatch({
+        type: "ACTIVE_ITEM",
+        ActiveItem: "actor"
+    })
+};
 
 
-export default Actor;
+
+export default connect(null,mapDispatchtoProps) (Actor);

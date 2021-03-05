@@ -1,67 +1,88 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import { Grid, Card, Image, Icon } from 'semantic-ui-react';
+import { Grid, Card, Image, Icon,Header } from 'semantic-ui-react';
 
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-var images = [
-    "https://cdn.pixabay.com/photo/2015/03/26/09/43/lenses-690179__480.jpg",
 
-    "https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289__480.jpg",
-
-    "https://cdn.pixabay.com/photo/2014/10/31/17/41/dancing-dave-minion-510835__480.jpg",
-
-    "https://cdn.pixabay.com/photo/2016/01/22/08/17/banner-1155437__480.png",
-
-    "https://cdn.pixabay.com/photo/2019/01/13/21/36/analog-3931362__480.jpg",
-
-    "https://cdn.pixabay.com/photo/2017/12/18/13/03/grain-3026099__480.jpg",
-
-    "https://cdn.pixabay.com/photo/2015/05/15/09/13/demonstration-767982__480.jpg",
-
-    "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg"
-]
 
 class Home extends Component {
     constructor() {
         super();
         this.state = {
-            dataHome: []
+            dataCarausel:[],
+            dataHome: [],
+            loading:true,
+
         };
     };
 
-    getData = () => {
-        axios.get(`http://api.tvmaze.com/search/shows?q=a`)
-            .then((res) => {
-                this.setState({
-                    dataHome: res.data
-                })
-            })
-    };
+    getDataCarausel = async () => {
+        try{
+            await axios.get(`https://api.tvmaze.com/shows`,{crossDomain:true})
+            .then( async (res) => {
+               let resData = res.data.sort(function(a,b){
+                   return a.rating.average < b.rating.average
+                   ? 1
+                   :b.rating.average < a.rating.average
+                   ?-1 
+                   :0
+               })              
+               let spliceData = resData.slice(0,10);
+               this.setState({
+                 dataCarausel:spliceData,
+                 
+             })
+         })
+     
+              } catch(error){
+            alert(JSON.stringify(error.message))
+        }
+};
 
-    componentDidMount = () => {
-        this.getData();
+     getData = async () => {
+         try{
+            await axios.get(`https://api.tvmaze.com/schedule`,{crossDomain:true})
+            .then( async (res) => {
+               this.setState({
+                dataHome:res.data,
+                 loading:false
+             })
+         })
+         } catch(error){
+            alert(JSON.stringify(error.message))
+        }
+};
+
+    componentDidMount = async () => {
+        await this.getDataCarausel();
+        await this.getData();
+        
     }
 
     render() {
         return (
+           <>
+            {this.state.loading ? (<h1>Loading .... </h1>) :(
             <div>
+                 <Header as='h1'>Top Films</Header>
                 <Carousel autoPlay centerMode centerSlidePercentage={40} showStatus={false}>
-                    {images.map((data, key) => {
+                    {this.state.dataCarausel.map((data, key) => {
                         return (
                             <div key={key}>
-                                <img alt="" src={data} />
+                                <img style={{height: "auto", width:"40%"}} alt={data.name} src={data.image.medium} />
+                             <h2 className="legend">{data.name}</h2>
                             </div>
                         )
                     })}
                 </Carousel>
-
+                <Header as='h1'>Today Schedules</Header>
                 <Grid>
                     {this.state.dataHome.map((data, key) => {
 
                         var gambar = { ...data.show.image };
-                        var rating = { ...data.show.rating }
+                        var rating = { ...data.show.rating };
 
                         if (data.show.image === null) {
                             gambar = "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg"
@@ -76,13 +97,16 @@ class Home extends Component {
                         }
 
                         return (
-                            <Grid.Column width={4} key={key}>
+                            <Grid.Column width={3} key={key}>
                                 <Card >
                                     <Image src={gambar} wrapped ui={false} />
                                     <Card.Content>
                                         <Card.Header>{data.show.name}</Card.Header>
                                         <Card.Description>
                                             {data.show.status}
+                                        </Card.Description>
+                                        <Card.Description>
+                                            Time :  {data.airtime}
                                         </Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
@@ -95,17 +119,19 @@ class Home extends Component {
                     })}
                 </Grid>
             </div>
-        );
+            )}
+       </>
+            
+        )
     }
 }
 
-// const mapDispatchtoProps = dispatch => {
-//     return dispatch({
-//         type: "ACTIVE_ITEM",
-//         ActiveItem: "home"
-//     })
-// }
+const mapDispatchtoProps = dispatch => {
+    return dispatch({
+        type: "ACTIVE_ITEM",
+        ActiveItem: "home"
+    })
+}
 
-// const mapStateToProps = () => ({});
 
-export default Home;
+export default connect(null,mapDispatchtoProps)(Home);

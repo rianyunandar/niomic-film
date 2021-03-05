@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Image, Grid, Input, Card, Icon } from 'semantic-ui-react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-class Film extends Component {
+class Film extends Component { 
     constructor() {
         super();
         this.state = {
@@ -100,13 +100,12 @@ class Film extends Component {
     }
 }
 
-// const mapDispatchtoProps = dispatch => {
-//     return dispatch({
-//         type: "ACTIVE_ITEM",
-//         ActiveItem: "film"
-//     })
-// }
+const mapDispatchtoProps = dispatch => {
+    return dispatch({
+        type: "ACTIVE_ITEM",
+        ActiveItem: "film"
+    })
+}
 
-// const mapStateToProps = () => ({});
 
-export default Film;
+export default connect(null,mapDispatchtoProps)(Film);

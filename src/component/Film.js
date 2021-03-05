@@ -11,13 +11,19 @@ class Film extends Component {
         };
     };
 
-    getData = () => {
-        axios.get(`http://api.tvmaze.com/search/shows?q=man`)
+    getData = async () => {
+        try{
+
+       await axios.get(`http://api.tvmaze.com/search/shows?q=marvel`)
             .then((res) => {
                 this.setState({
                     dataFilm: res.data
                 })
             })
+        }catch(error){
+           alert(JSON.stringify(error.message))
+       }
+
     };
 
     pencarian = (e) => {
@@ -42,7 +48,7 @@ class Film extends Component {
             <div>
                 <Grid celled='internally'>
                     <Grid.Row>
-                        <Grid.Column width={3}>
+                        <Grid.Column width={2}>
                             <Image src='https://cdn.pixabay.com/photo/2015/03/26/09/43/lenses-690179__480.jpg' />
                             <Image style={{ marginTop: 20 }} src='https://cdn.pixabay.com/photo/2015/03/26/09/43/lenses-690179__480.jpg' />
                             <Image style={{ marginTop: 20 }} src='https://cdn.pixabay.com/photo/2015/03/26/09/43/lenses-690179__480.jpg' />

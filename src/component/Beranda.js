@@ -46,7 +46,7 @@ class Beranda extends Component {
 
     render() {
         return (
-            <Container>
+            <Container >
                 <Carousel autoPlay centerMode centerSlidePercentage={40} showStatus={false}>
                     {images.map((data, key) => {
                         return (

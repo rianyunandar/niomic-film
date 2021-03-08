@@ -28,7 +28,7 @@ const reducerFilm = (state = stateFilm, action) => {
 
 }
 
-const store = createStore(reducerFilm, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(reducerFilm);
 console.log("store update", store.getState())
 
 ReactDOM.render(
